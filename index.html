@@ -6,117 +6,117 @@
   <title>Møyang</title>
   <style media="screen">
     .body {
-      /* background-color: #222; */
       color: grey;
       overflow: hidden;
     }
     .anim {
-      /* -webkit-animation: spin 5s infinite linear, grossi .2s ease-out; */
-      /* -moz-animation: spin 5s infinite linear, grossi .2s ease-out; */
-      /* animation: spin 5s infinite linear, grossi .2s ease-out; */
-      /* transform: scale(0); */
       position: absolute;
       mix-blend-mode: multiply;
-      /* transform: translate(-50%, -50%); */
-      /* opacity: .5; */
-      /* top: 0px; */
-      /* left: 0px; */
-      /* width: 100px; */
-      /* height: 100px; */
-      /* background-color: white; */
-    }
-    .blend {
-      /* mix-blend-mode: multiply; */
-    }
-    .dispr {
-      opacity: 0;
     }
     .title,.instruction {
       text-align: center;
       font-family: sans-serif;
       font-weight: 100;
-      font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 15px;
-      transition: opacity 0.3s;
     }
     .title {
+      font-size: 10px;
+      letter-spacing: 15px;
       margin-top: 30vh;
     }
     .instruction {
+      font-size: 8px;
+      letter-spacing: 10px;
       color: grey;
       margin-top: 30vh;
     }
-    @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-    @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-    @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
-
-    @-moz-keyframes grossi { 100% { -moz-transform: scale(1); } }
-    @-webkit-keyframes grossi { 100% { -webkit-transform: scale(1); } }
-    @keyframes grossi { 100% { -webkit-transform: scale(1); transform:scale(1); } }
-
   </style>
+
 </head>
 <body class="body">
   <h1 class="title">Møyang</h1>
-  <p class="instruction">press any key</p>
-  <!-- <svg class="anim" width="120" height="120" viewBox="0 0 120 120">
-    <polygon points="75 0, 100 50, 75 100, 0 100, 25 50, 0 0" stroke='none' fill='yellow'/>
-  </svg> -->
+  <p class="instruction">use your keyboard</p>
+
 
   <script type="text/javascript">
+  var width, height, x, y, raw, nraw, prev, points, value, wd
 
   var colors = ['#ff5714','#e4ff1a','#ff9d00']
   var c = 0
 
-  var title = document.querySelector('h1')
-  var instruction = document.querySelector('p')
+  var title = document.querySelector('.title')
+  var instruction = document.querySelector('.instruction')
 
   window.addEventListener('keydown', function(event) {
 
-    // var svg = document.createElement('svg')
-    // svg.classList.add('anim')
-    //
-    var width = height = Math.floor(Math.random() * 350) + 50
-    // var height = Math.floor(Math.random() * 350) + 50
-    console.log('w : '+width+'  /  h : '+height);
-    // svg.setAttribute('width', width)
-    // svg.setAttribute('height', height)
-    //
-    // svg.setAttribute('viewBox', '0 0 '+ width + ' ' + height)
-    //
-    var x = Math.floor(Math.random() * 100) + 0
-    var y = Math.floor(Math.random() * 100) + 0
-    console.log('x : '+x+'  /  y : '+y);
-    // svg.style.left = x + '%'
-    // svg.style.top = y + '%'
-    //
-    // svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
-
-    // var polygon = document.createElement('polygon')
-    // var raw = '15% 4%, 53% 27%, 82% 2%, 85% 40%, 60% 61%, 82% 74%, 55% 80%, 6% 72%, 24% 38%'
-    // var raw = '22% 17%, 63% 5%, 94% 11%, 96% 57%, 28% 91%, 30% 49%'
-    var raw = '0 0, 100% 0, 100% 100%, 0 100%'
-    var nraw = ''
-    var prev = ''
-    rawAdjust()
-    function rawAdjust() {
-      for (var i = 0; i < raw.length; i++) {
-        switch (raw[i]) {
-          case ' ':
-          case ',':
-            if (prev === '0') {
-              nraw += '%'
-            }
-        }
-        nraw += raw[i]
-        prev = raw[i]
-      }
+    // http://keycode.info
+    // http://bennettfeely.com/clippy/
+    switch (event.which) {
+      /* A */ case 65: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      /* B */ case 66: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      /* C */ case 67: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 68: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 69: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 70: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 71: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 72: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 73: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 74: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 75: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 76: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 77: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 78: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 79: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 80: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 81: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 82: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 83: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 84: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 85: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 86: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 87: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 88: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 89: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 90: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      default: raw = ''
     }
-    console.log(nraw);
-    var points = ''
-    var value = ''
-    var wd = false
+    if (raw) {
+      rawAdjust()
+      randSize()
+      randPos()
+      pointsCreate()
+      shapeCreate()
+    }
+  })
+
+  function randSize() {
+    width = height = Math.floor(Math.random() * 150) + 50
+    console.log('w : '+width+'  /  h : '+height)
+  }
+  function randPos() {
+    x = Math.floor(Math.random() * 100) + 0
+    y = Math.floor(Math.random() * 100) + 0
+    console.log('x : '+x+'  /  y : '+y);
+  }
+  function rawAdjust() {
+    nraw = ''
+    prev = ''
+    for (var i = 0; i < raw.length; i++) {
+      switch (raw[i]) {
+        case ' ':
+        case ',':
+          if (prev === '0') {
+            nraw += '%'
+          }
+      }
+      nraw += raw[i]
+      prev = raw[i]
+    }
+  }
+  function pointsCreate() {
+    points = ''
+    value = ''
+    wd = false
     prev = ''
     for (var i = 0; i < nraw.length; i++) {
       if (nraw[i] === ' ' && prev === '%') {
@@ -141,46 +141,18 @@
       }
       prev = nraw[i]
     }
-    // svg.innerHTML = '<polygon points="' + points + '" stroke="none" fill="yellow" />'
-    // console.log('<polygon points="' + points + '" stroke="none" fill="yellow" />');
-    // polygon.setAttribute('points', points)
-    // polygon.setAttribute('stroke', 'none')
-    // polygon.setAttribute('fill', 'yellow')
-    // svg.appendChild(polygon)
-
-    // document.body.appendChild(svg)
-    // console.log(svg.innerHTML);
-    // var newHTML = svg.innerHTML.slice(0, -11) + '/>'
-    // console.log(newHTML);
-    // svg.innerHTML = 'oui'
-    // svg.innerHTML = '' + newHTML + ''
-    // console.log(svg.innerHTML);
-
-
-
-
-    // if (event.which === 65) {
-    //   console.log('A');
-    // }
-
-
-
-
+  }
+  function shapeCreate() {
     document.body.innerHTML += '<svg class="anim" width="' + width + '" height="'+ height +'" viewBox="0 0 ' + width + ' ' + height + '" style="left:calc(' + x + 'vw - ' + width/2 + 'px); top:calc(' + y + 'vh - ' + height/2 + 'px)"> <polygon class="blend" points="' + points + '" stroke="none" fill="'+ colors[c] +'"/> </svg>'
-    cf()
-
-    title.classList.add('dispr')
-    instruction.classList.add('dispr')
-
-    function cf() {
-      if (c < colors.length - 1) {
-        c ++
-      } else {
-        c = 0
-      }
+    colorChange()
+  }
+  function colorChange() {
+    if (c < colors.length - 1) {
+      c ++
+    } else {
+      c = 0
     }
-
-  })
+  }
 
   </script>
 
