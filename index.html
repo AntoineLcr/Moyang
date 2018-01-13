@@ -1,118 +1,188 @@
-<!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Møyang</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Møyang</title>
+  <style media="screen">
+    .body {
+      /* background-color: #222; */
+      color: grey;
+      overflow: hidden;
+    }
+    .anim {
+      /* -webkit-animation: spin 5s infinite linear, grossi .2s ease-out; */
+      /* -moz-animation: spin 5s infinite linear, grossi .2s ease-out; */
+      /* animation: spin 5s infinite linear, grossi .2s ease-out; */
+      /* transform: scale(0); */
+      position: absolute;
+      mix-blend-mode: multiply;
+      /* transform: translate(-50%, -50%); */
+      /* opacity: .5; */
+      /* top: 0px; */
+      /* left: 0px; */
+      /* width: 100px; */
+      /* height: 100px; */
+      /* background-color: white; */
+    }
+    .blend {
+      /* mix-blend-mode: multiply; */
+    }
+    .dispr {
+      opacity: 0;
+    }
+    .title,.instruction {
+      text-align: center;
+      font-family: sans-serif;
+      font-weight: 100;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 15px;
+      transition: opacity 0.3s;
+    }
+    .title {
+      margin-top: 30vh;
+    }
+    .instruction {
+      color: grey;
+      margin-top: 30vh;
+    }
+    @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+    @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+    @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
-        <style type="text/css">
-        	.body {
-        		background-color: #222;
-        		color: white;
-        		overflow: hidden;
-        	}
-	        	
-	 	   	.oui {
-/*	 	   		transform: rotate(30deg);*/
-	 	   		-webkit-animation: spin 5s infinite linear, grossi .2s ease-out;
-			    -moz-animation: spin 5s infinite linear, grossi .2s ease-out;
-			    animation: spin 5s infinite linear, grossi .2s ease-out;
+    @-moz-keyframes grossi { 100% { -moz-transform: scale(1); } }
+    @-webkit-keyframes grossi { 100% { -webkit-transform: scale(1); } }
+    @keyframes grossi { 100% { -webkit-transform: scale(1); transform:scale(1); } }
+
+  </style>
+</head>
+<body class="body">
+  <h1 class="title">Møyang</h1>
+  <p class="instruction">press any key</p>
+  <!-- <svg class="anim" width="120" height="120" viewBox="0 0 120 120">
+    <polygon points="75 0, 100 50, 75 100, 0 100, 25 50, 0 0" stroke='none' fill='yellow'/>
+  </svg> -->
+
+  <script type="text/javascript">
+
+  var colors = ['#ff5714','#e4ff1a','#ff9d00']
+  var c = 0
+
+  var title = document.querySelector('h1')
+  var instruction = document.querySelector('p')
+
+  window.addEventListener('keydown', function(event) {
+
+    // var svg = document.createElement('svg')
+    // svg.classList.add('anim')
+    //
+    var width = height = Math.floor(Math.random() * 350) + 50
+    // var height = Math.floor(Math.random() * 350) + 50
+    console.log('w : '+width+'  /  h : '+height);
+    // svg.setAttribute('width', width)
+    // svg.setAttribute('height', height)
+    //
+    // svg.setAttribute('viewBox', '0 0 '+ width + ' ' + height)
+    //
+    var x = Math.floor(Math.random() * 100) + 0
+    var y = Math.floor(Math.random() * 100) + 0
+    console.log('x : '+x+'  /  y : '+y);
+    // svg.style.left = x + '%'
+    // svg.style.top = y + '%'
+    //
+    // svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
+
+    // var polygon = document.createElement('polygon')
+    // var raw = '15% 4%, 53% 27%, 82% 2%, 85% 40%, 60% 61%, 82% 74%, 55% 80%, 6% 72%, 24% 38%'
+    // var raw = '22% 17%, 63% 5%, 94% 11%, 96% 57%, 28% 91%, 30% 49%'
+    var raw = '0 0, 100% 0, 100% 100%, 0 100%'
+    var nraw = ''
+    var prev = ''
+    rawAdjust()
+    function rawAdjust() {
+      for (var i = 0; i < raw.length; i++) {
+        switch (raw[i]) {
+          case ' ':
+          case ',':
+            if (prev === '0') {
+              nraw += '%'
+            }
+        }
+        nraw += raw[i]
+        prev = raw[i]
+      }
+    }
+    console.log(nraw);
+    var points = ''
+    var value = ''
+    var wd = false
+    prev = ''
+    for (var i = 0; i < nraw.length; i++) {
+      if (nraw[i] === ' ' && prev === '%') {
+        wd = true
+      } else if (nraw[i] === '%') {
+        if (wd === false) {
+          console.log('W');
+          value = parseInt(value) * width / 100
+        } else {
+          console.log('H');
+          value = parseInt(value) * height / 100
+        }
+        points += value + ' '
+        value = ''
+      } else {
+        if (nraw[i] === ',') {
+          wd = false
+          points += nraw[i]
+        } else {
+          value += nraw[i]
+        }
+      }
+      prev = nraw[i]
+    }
+    // svg.innerHTML = '<polygon points="' + points + '" stroke="none" fill="yellow" />'
+    // console.log('<polygon points="' + points + '" stroke="none" fill="yellow" />');
+    // polygon.setAttribute('points', points)
+    // polygon.setAttribute('stroke', 'none')
+    // polygon.setAttribute('fill', 'yellow')
+    // svg.appendChild(polygon)
+
+    // document.body.appendChild(svg)
+    // console.log(svg.innerHTML);
+    // var newHTML = svg.innerHTML.slice(0, -11) + '/>'
+    // console.log(newHTML);
+    // svg.innerHTML = 'oui'
+    // svg.innerHTML = '' + newHTML + ''
+    // console.log(svg.innerHTML);
 
 
-			    transform: scale(0);
-
-	 	   		position: absolute;
-	 	   		top: 0px;
-	 	   		left: 0px;
-
-	 	   		width: 100px;
-	 	   		height: 100px;
-	 	   		background-color: white;
-	 	   	}
-	 	   	.dispr {
-	 	   		opacity: 0;
-	 	   	}
-	 	   	.title,.instruction {
-	 	   		text-align: center;
-	 	   		font-family: sans-serif;
-	 	   		font-weight: 100;
-    			font-size: 13px;
-    			text-transform: uppercase;
-    			letter-spacing: 20px;
-    			transition: opacity 0.3s;
-	 	   	}
-	 	   	.title {
-	 	   		margin-top: 30vh;
-	 	   	}
-	 	   	.instruction {
-	 	   		color: grey;
-	 	   		margin-top: 40vh;
-	 	   	}
-
-	 	   	@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-			@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-			@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
-
-			@-moz-keyframes grossi { 100% { -moz-transform: scale(1); } }
-			@-webkit-keyframes grossi { 100% { -webkit-transform: scale(1); } }
-			@keyframes grossi { 100% { -webkit-transform: scale(1); transform:scale(1); } }
-
-        </style>
-
-    </head>
-
-    <body class="body">
-    	<h1 class="title">Møyang</h1>
-    	<p class="instruction">press a key</p>
 
 
-    	<script type="text/javascript">
-
-    		var colors = ['ff5714','e4ff1a','ff9d00']
-
-    		var title = document.querySelector('h1')
-    		var instruction = document.querySelector('p')
-
-
-
-    		document.addEventListener('keydown', function() {
-
-    			var div = document.createElement('div')
-
-    			div.classList.add('oui')
-
-
-    			// couleur
-    			var index = Math.floor(Math.random() * colors.length) + 0
-
-    			div.style.backgroundColor = '#' + colors[index]
-
-    			// taille
-    			var size = Math.floor(Math.random() * 150) + 10
-
-    			div.style.width = size + 'px'
-    			div.style.height = size + 'px'
-
-    			// position
-    			var x = Math.floor(Math.random() * 110) + -10
-    			var y = Math.floor(Math.random() * 110) + -10
-
-    			div.style.left = x + '%'
-    			div.style.top = y + '%'
-
-    			// cache le texte
-    			title.classList.add('dispr')
-    			instruction.classList.add('dispr')
-
-    			
-    			document.body.appendChild(div)
-
-    		})
+    // if (event.which === 65) {
+    //   console.log('A');
+    // }
 
 
 
 
-    	</script>
-    </body>
+    document.body.innerHTML += '<svg class="anim" width="' + width + '" height="'+ height +'" viewBox="0 0 ' + width + ' ' + height + '" style="left:calc(' + x + 'vw - ' + width/2 + 'px); top:calc(' + y + 'vh - ' + height/2 + 'px)"> <polygon class="blend" points="' + points + '" stroke="none" fill="'+ colors[c] +'"/> </svg>'
+    cf()
+
+    title.classList.add('dispr')
+    instruction.classList.add('dispr')
+
+    function cf() {
+      if (c < colors.length - 1) {
+        c ++
+      } else {
+        c = 0
+      }
+    }
+
+  })
+
+  </script>
+
+</body>
 </html>
