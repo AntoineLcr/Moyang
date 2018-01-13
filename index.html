@@ -7,7 +7,16 @@
   <style media="screen">
     .body {
       color: grey;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       overflow: hidden;
+      background: url('dot-bg.png') center center;
+      mix-blend-mode: multiply;
     }
     .anim {
       position: absolute;
@@ -36,13 +45,16 @@
 <body class="body">
   <h1 class="title">Møyang</h1>
   <p class="instruction">use your keyboard</p>
+  <div class="overlay"></div>
 
 
   <script type="text/javascript">
   var width, height, x, y, raw, nraw, prev, points, value, wd
 
-  var colors = ['#ff5714','#e4ff1a','#ff9d00']
-  var c = 0
+  var color = '#000000'
+  // var colors = ['#ff5714','#e4ff1a','#ff9d00']
+  // #AD76ED #86DB53 #FD8E81
+  // var c = 0
 
   var title = document.querySelector('.title')
   var instruction = document.querySelector('.instruction')
@@ -52,32 +64,113 @@
     // http://keycode.info
     // http://bennettfeely.com/clippy/
     switch (event.which) {
-      /* A */ case 65: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      /* B */ case 66: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      /* C */ case 67: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 68: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 69: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 70: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 71: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 72: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 73: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 74: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 75: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 76: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 77: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 78: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 79: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 80: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 81: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 82: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 83: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 84: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 85: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 86: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 87: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 88: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 89: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
-      case 90: raw = '0 0, 100% 0, 100% 100%, 0 100%' ;break
+      case 65: // A
+      raw = '50% 0%, 0% 100%, 100% 100%'
+      color = '#AD76ED'
+      break
+      case 90: // Z
+      raw = '0 0, 100% 0, 100% 100%, 0 100%'
+      color = '#AD76ED'
+      break
+      case 69: // E
+      raw = '20% 0%, 80% 0%, 100% 100%, 0% 100%'
+      color = '#AD76ED'
+      break
+      case 82: // R
+      raw = '25% 0%, 100% 0%, 75% 100%, 0% 100%'
+      color = '#AD76ED'
+      break
+      case 84: // T
+      raw = '50% 0%, 100% 50%, 50% 100%, 0% 50%'
+      color = '#AD76ED'
+      break
+      case 89: // Y
+      raw = '50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%'
+      color = '#AD76ED'
+      break
+      case 85: // U
+      raw = '50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%'
+      color = '#AD76ED'
+      break
+      case 73: // I
+      raw = '50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%'
+      color = '#AD76ED'
+      break
+      case 79: // O
+      raw = '30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%'
+      color = '#AD76ED'
+      break
+      case 80: // P
+      raw = '50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%'
+      color = '#AD76ED'
+      break
+
+      case 81: // Q
+      raw = '50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%'
+      color = '#86DB53'
+      break
+      case 83: // S
+      raw = '20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%'
+      color = '#86DB53'
+      break
+      case 68: // D
+      raw = '0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%'
+      color = '#86DB53'
+      break
+      case 70: // F
+      raw = '20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%'
+      color = '#86DB53'
+      break
+      case 71: // G
+      raw = '56% 16%, 19% 28%, 11% 78%, 56% 100%, 75% 32%'
+      color = '#86DB53'
+      break
+      case 72: // H
+      raw = '13% 6%, 4% 74%, 35% 23%, 85% 85%, 94% 29%, 68% 7%'
+      color = '#86DB53'
+      break
+      case 74: // J
+      raw = '83% 13%, 90% 92%, 9% 92%, 29% 46%, 43% 33%, 51% 27%, 60% 22%, 70% 16%'
+      color = '#86DB53'
+      break
+      case 75: // K
+      raw = '29% 19%, 93% 19%, 18% 75%'
+      color = '#86DB53'
+      break
+      case 76: // L
+      raw = '28% 21%, 70% 21%, 28% 83%, 10% 41%'
+      color = '#86DB53'
+      break
+      case 77: // M
+      raw = '0 0, 100% 0, 100% 100%, 0 100%'
+      color = '#86DB53'
+      break
+
+      case 87: // W
+      raw = '2% 2%, 2% 98%, 99% 72%, 71% 47%, 98% 29%, 54% 3%'
+      color = '#ff5714'
+      break
+      case 88: // X
+      raw = '7% 7%, 83% 9%, 45% 22%'
+      color = '#ff5714'
+      break
+      case 67: // C
+      raw = '83% 23%, 45% 79%, 7% 63%, 3% 31%, 37% 0%'
+      color = '#ff5714'
+      break
+      case 86: // V
+      raw = '49% 2%, 42% 42%, 4% 51%, 43% 59%, 49% 97%, 55% 59%, 97% 50%, 56% 43%'
+      color = '#ff5714'
+      break
+      case 66: // B
+      raw = '9% 5%, 50% 37%, 93% 5%, 50% 18%'
+      color = '#ff5714'
+      break
+      case 78: // N
+      raw = '33% 10%, 7% 21%, 86% 94%'
+      color = '#ff5714'
+      break
+
       default: raw = ''
     }
     if (raw) {
@@ -143,8 +236,8 @@
     }
   }
   function shapeCreate() {
-    document.body.innerHTML += '<svg class="anim" width="' + width + '" height="'+ height +'" viewBox="0 0 ' + width + ' ' + height + '" style="left:calc(' + x + 'vw - ' + width/2 + 'px); top:calc(' + y + 'vh - ' + height/2 + 'px)"> <polygon class="blend" points="' + points + '" stroke="none" fill="'+ colors[c] +'"/> </svg>'
-    colorChange()
+    document.body.innerHTML += '<svg class="anim" width="' + width + '" height="'+ height +'" viewBox="0 0 ' + width + ' ' + height + '" style="left:calc(' + x + 'vw - ' + width/2 + 'px); top:calc(' + y + 'vh - ' + height/2 + 'px)"> <polygon class="blend" points="' + points + '" stroke="none" fill="'+ color +'"/> </svg>'
+    // colorChange()
   }
   function colorChange() {
     if (c < colors.length - 1) {

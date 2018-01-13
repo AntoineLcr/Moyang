@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="700px" height="100px" viewBox="0 0 700 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>title</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Desktop-HD" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-370.000000, -363.000000)">
+        <g id="title" transform="translate(370.000000, 363.000000)">
+            <polygon id="Rectangle-Copy-11" fill="#86DB53" style="mix-blend-mode: multiply;" transform="translate(530.000000, 50.000000) rotate(-180.000000) translate(-530.000000, -50.000000) " points="480 0 580 100 530 100 480 50"></polygon>
+            <polygon id="Rectangle" fill="#AD76ED" style="mix-blend-mode: multiply;" points="0 0 100 100 0 100"></polygon>
+            <polygon id="Rectangle-Copy-6" fill="#AD76ED" style="mix-blend-mode: multiply;" transform="translate(50.000000, 50.000000) scale(-1, 1) translate(-50.000000, -50.000000) " points="0 0 100 100 0 100"></polygon>
+            <path d="M134.644661,85.3553391 L205.355339,14.6446609 C214.403559,23.6928813 220,36.1928813 220,50 C220,77.6142375 197.614237,100 170,100 C156.192881,100 143.692881,94.4035594 134.644661,85.3553391 Z" id="Combined-Shape" fill="#86DB53" style="mix-blend-mode: multiply;"></path>
+            <path d="M398.30395,38.3039496 L385,25 L410,0 L460,50 L460,100 L398.30395,38.3039496 Z" id="Combined-Shape" fill="#AD76ED" style="mix-blend-mode: multiply;"></path>
+            <path d="M373.071368,38.0713682 L360,25 L384.644623,0.355376516 L384.753672,0 L384.877139,0.122861487 L385,0 L410,25 L409.938569,25.0614307 L435,50 L435,100 L373,38.3039496 L373.071368,38.0713682 Z" id="Combined-Shape" fill="#AD76ED" style="mix-blend-mode: multiply;" transform="translate(397.500000, 50.000000) scale(-1, 1) translate(-397.500000, -50.000000) "></path>
+            <path d="M340,0 L290,50 L240,0 L340,0 Z" id="Combined-Shape" fill="#FD8E81" style="mix-blend-mode: multiply;"></path>
+            <polygon id="Combined-Shape" fill="#FD8E81" style="mix-blend-mode: multiply;" points="340 0 290 50 290 0"></polygon>
+            <path d="M650,0 L650,50 L700,50 C700,77.6142375 677.614237,100 650,100 C622.385763,100 600,77.6142375 600,50 C600,22.3857625 622.385763,-7.15207677e-15 650,-2.07942364e-15 Z" id="Combined-Shape" fill="#FD8E81" style="mix-blend-mode: multiply;"></path>
+            <path d="M650,100 L650,50 L614.644661,85.3553391 C605.596441,76.3071187 600,63.8071187 600,50 L700,50 C700,77.6142375 677.614237,100 650,100 Z" id="Combined-Shape" fill="#FD8E81" style="mix-blend-mode: multiply;"></path>
+            <rect id="Rectangle-3" fill="#FD8E81" style="mix-blend-mode: multiply;" x="280" y="65" width="20" height="35"></rect>
+            <rect id="Rectangle-5" fill="#86DB53" style="mix-blend-mode: multiply;" x="480" y="0" width="30" height="100"></rect>
+            <polygon id="Rectangle-5-Copy" fill="#86DB53" style="mix-blend-mode: multiply;" points="550 0 580 0 580 100 550 100 550 70.0174131 550 50"></polygon>
+            <circle id="Oval" fill="#86DB53" style="mix-blend-mode: multiply;" cx="170" cy="50" r="50"></circle>
+        </g>
+    </g>
+</svg>
