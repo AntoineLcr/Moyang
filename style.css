@@ -1,0 +1,67 @@
+.body {
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 1.5fr auto 1fr auto 1.5fr;
+}
+.title {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  display: grid;
+  grid-template-columns: 100px 40px 100px 30px 100px 30px 100px 40px 100px 40px 100px;
+  mix-blend-mode: multiply;
+}
+.M {
+  grid-column: 1 / 2;
+  transition: opacity 1s;
+}
+.O {
+  grid-column: 3 / 4;
+  transition: opacity 1s;
+}
+.Y {
+  grid-column: 5 / 6;
+  transition: opacity 1s;
+}
+.A {
+  grid-column: 7 / 8;
+  transition: opacity 1s;
+}
+.N {
+  grid-column: 9 / 10;
+  transition: opacity 1s;
+}
+.G {
+  grid-column: 11 / 12;
+  transition: opacity 1s;
+}
+.instruction {
+  grid-column: 2 / 3;
+  grid-row: 4 / 5;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 8px;
+  letter-spacing: 10px;
+  mix-blend-mode: multiply;
+  transition: opacity 1s;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: url('dot-bg.png') center center;
+  mix-blend-mode: multiply;
+}
+.anim {
+  position: absolute;
+  mix-blend-mode: multiply;
+}
+.hidden {
+  opacity: 0;
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>A</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Desktop-HD" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-680.000000, -363.000000)">
+        <g id="A" transform="translate(680.000000, 363.000000)" fill="#9CF13E">
+            <path d="M38.3039496,38.3039496 L25,25 L50,0 L100,50 L100,100 L38.3039496,38.3039496 Z" id="Combined-Shape" style="mix-blend-mode: multiply;"></path>
+            <path d="M13.0713682,38.0713682 L0,25 L24.6446235,0.355376516 L24.7536717,0 L24.8771385,0.122861487 L25,0 L50,25 L49.9385693,25.0614307 L75,50 L75,100 L13,38.3039496 L13.0713682,38.0713682 Z" id="Combined-Shape" style="mix-blend-mode: multiply;" transform="translate(37.500000, 50.000000) scale(-1, 1) translate(-37.500000, -50.000000) "></path>
+        </g>
+    </g>
+</svg>

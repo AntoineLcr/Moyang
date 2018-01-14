@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Y</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Desktop-HD" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-550.000000, -363.000000)">
+        <g id="Y" transform="translate(550.000000, 363.000000)" fill="#FCE900">
+            <path d="M100,0 L50,50 L0,0 L100,0 Z" id="Combined-Shape" style="mix-blend-mode: multiply;"></path>
+            <polygon id="Combined-Shape" style="mix-blend-mode: multiply;" points="100 0 50 50 50 0"></polygon>
+            <rect id="Rectangle-3" style="mix-blend-mode: multiply;" x="35" y="60" width="30" height="40"></rect>
+        </g>
+    </g>
+</svg>
