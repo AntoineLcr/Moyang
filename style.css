@@ -12,29 +12,50 @@
   grid-template-columns: 100px 40px 100px 30px 100px 30px 100px 40px 100px 40px 100px;
   mix-blend-mode: multiply;
 }
-.M {
+.M.letter {
   grid-column: 1 / 2;
   transition: opacity 1s;
 }
-.O {
+.O.letter {
   grid-column: 3 / 4;
   transition: opacity 1s;
 }
-.Y {
+.Y.letter {
   grid-column: 5 / 6;
   transition: opacity 1s;
 }
-.A {
+.A.letter {
   grid-column: 7 / 8;
   transition: opacity 1s;
 }
-.N {
+.N.letter {
   grid-column: 9 / 10;
   transition: opacity 1s;
 }
-.G {
+.G.letter {
   grid-column: 11 / 12;
   transition: opacity 1s;
+}
+.shape {
+  mix-blend-mode: multiply;
+}
+.M.shape {
+  fill: #FFAAA0;
+}
+.O.shape {
+  fill: #FFBE4A;
+}
+.Y.shape {
+  fill: #FCE900;
+}
+.A.shape {
+  fill: #9CF13E;
+}
+.N.shape {
+  fill: #85D4FF;
+}
+.G.shape {
+  fill: #DF8BFF;
 }
 .instruction {
   grid-column: 2 / 3;
