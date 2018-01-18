@@ -15,29 +15,33 @@
   grid-template-columns: 1fr 100px 40px 100px 30px 100px 30px 100px 40px 100px 40px 100px 1fr;
   mix-blend-mode: multiply;
 }
+[class*=letter] {
+  transform: scale(0);
+  opacity: 0;
+}
 .M.letter {
   grid-column: 2 / 3;
-  transition: opacity 1s;
+  /* transition: opacity 1s; */
 }
 .O.letter {
   grid-column: 4 / 5;
-  transition: opacity 1s;
+  /* transition: opacity 1s; */
 }
 .Y.letter {
   grid-column: 6 / 7;
-  transition: opacity 1s;
+  /* transition: opacity 1s; */
 }
 .A.letter {
   grid-column: 8 / 9;
-  transition: opacity 1s;
+  /* transition: opacity 1s; */
 }
 .N.letter {
   grid-column: 10 / 11;
-  transition: opacity 1s;
+  /* transition: opacity 1s; */
 }
 .G.letter {
   grid-column: 12 / 13;
-  transition: opacity 1s;
+  /* transition: opacity 1s; */
 }
 .shape {
   mix-blend-mode: multiply;
@@ -70,7 +74,10 @@
   font-size: 8px;
   letter-spacing: 10px;
   mix-blend-mode: multiply;
-  transition: opacity 1s;
+
+  opacity: 0;
+  transform: translateY(5px);
+  /* transition: opacity 1s; */
 }
 
 .overlay,
@@ -93,6 +100,9 @@
 .anim {
   position: absolute;
   mix-blend-mode: multiply;
+}
+.blend {
+  /* transform: scale(.5); */
 }
 .hidden {
   opacity: 0;

@@ -12,21 +12,35 @@ var input = document.querySelector('.input')
 input.value = ''
 var playground = document.querySelector('.playground')
 
+TweenMax.staggerTo(letters, .25, {transform:'scale(1)', opacity:1}, .1)
+TweenMax.to(instruction, .5, {opacity:1, transform:'translateY(0px)', delay:1})
+
+
 noiseFx()
 
 letterClick()
 function letterClick() {
   for (let i = 0; i < letters.length; i++) {
     letters[i].addEventListener('click', function() {
-      colorChoose(i)
-      colorMoyang()
-      hideHome()
-      inputOn()
-      keysOn()
+      gameOn(i)
     })
     letters[i].addEventListener('mouseover', cursorOn)
     letters[i].addEventListener('mouseout', cursorOff)
   }
+}
+// keySpace()
+function gameOn(i) {
+  colorChoose(i)
+  colorMoyang()
+  hideHome()
+  inputOn()
+  keysOn()
+
+  TweenMax.to(letterShapes, .25, {transform:'translateY(100px)'})
+
+  TweenMax.to(instruction, .25, {opacity:0, transform:'translateY(5px)'})
+  TweenMax.to(instruction, .5, {opacity:1, transform:'translateY(0px)',textContent:'TYPE IT OUT', delay:.5})
+  TweenMax.to(instruction, .25, {opacity:0, transform:'translateY(5px)', delay:2})
 }
 function cursorOn() {
   document.body.style.cursor = 'pointer'
@@ -43,15 +57,15 @@ function colorMoyang() {
   }
 }
 function hideHome() {
-  title.classList.add('hidden')
+  // title.classList.add('hidden')
   for (letter of letters) {
     letter.removeEventListener('mouseover', cursorOn)
   }
-  instruction.textContent = 'TYPE SOMETHING AMAZING'
-  aftstart = window.setTimeout(function() {
-    instruction = document.querySelector('.instruction')
-    instruction.classList.add('hidden')
-  }, 1000)
+  // instruction.textContent = 'TYPE SOMETHING AMAZING'
+  // aftstart = window.setTimeout(function() {
+  //   instruction = document.querySelector('.instruction')
+  //   instruction.classList.add('hidden')
+  // }, 1000)
 }
 function inputOn() {
   input.classList.remove('none')
@@ -72,12 +86,17 @@ function keysOn() {
       randPos()
       pointsCreate()
       shapeCreate()
-    }
-    if (event.which === 8) {
+    } else if (event.which === 8) {
       input.textContent = input.textContent.slice(0, -1)
-      
+
+      // TweenMax.to(playground.lastChild, 1, {transform:'translateY(100%)'})
+
+
       if (playground.lastChild) {
-        playground.removeChild(playground.lastChild)
+        TweenMax.to(playground.lastChild, .1, {transform:'scale(0)', opacity:0})
+        window.setTimeout(function() {
+          playground.removeChild(playground.lastChild)
+        }, 100)
       }
     }
   })
@@ -226,6 +245,7 @@ function pointsCreate() {
 function shapeCreate() {
   playground.innerHTML += '<svg class="anim" width="' + width + '" height="'+ height +'" viewBox="0 0 ' + width + ' ' + height + '" style="left:calc(' + x + 'vw - ' + width/2 + 'px); top:calc(' + y + 'vh - ' + height/2 + 'px)"> <polygon class="blend" points="' + points + '" stroke="none" fill="'+ color +'"/> </svg>'
   // colorChange()
+  TweenMax.from(playground.lastChild, .25, {transform:'scale(0)', opacity:0})
 }
 function colorChange() {
   if (c < colors.length - 1) {
@@ -247,4 +267,12 @@ function noiseFx() {
       i = 1
     }
   }, 100)
+}
+function keySpace() {
+  window.addEventListener('keydown', function(event) {
+    if (event.which === 32) {
+      console.log('space');
+      gameOn(Math.floor(Math.random() * letters.length) + 0 )
+    }
+  })
 }
