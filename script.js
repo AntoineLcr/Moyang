@@ -1,6 +1,6 @@
 var width, height, x, y, raw, nraw, prev, points, value, wd, color, aftstart
 var colors = ['#FFAAA0', '#FFBE4A', '#FCE900', '#9CF13E', '#85D4FF', '#DF8BFF']
-var ready = false
+// var ready = false
 var start = false
 
 
@@ -8,15 +8,19 @@ var title = document.querySelector('.title')
 var letters = document.querySelectorAll('.letter')
 var letterShapes = document.querySelectorAll('.shape')
 var instruction = document.querySelector('.instruction')
+var input = document.querySelector('.input')
+input.value = ''
+var playground = document.querySelector('.playground')
 
 letterClick()
 function letterClick() {
   for (let i = 0; i < letters.length; i++) {
     letters[i].addEventListener('click', function() {
       colorChoose(i)
-      instructionChange()
-      spaceUnlock()
       colorMoyang()
+      hideHome()
+      inputOn()
+      keysOn()
     })
     letters[i].addEventListener('mouseover', cursorOn)
     letters[i].addEventListener('mouseout', cursorOff)
@@ -30,12 +34,6 @@ function cursorOff() {
 }
 function colorChoose(i) {
   color = colors[i]
-}
-function instructionChange() {
-  instruction.textContent = 'PRESS SPACE TO START'
-}
-function spaceUnlock() {
-  ready = true
 }
 function colorMoyang() {
   for (shape of letterShapes) {
@@ -53,113 +51,115 @@ function hideHome() {
     instruction.classList.add('hidden')
   }, 1000)
 }
+function inputOn() {
+  input.classList.remove('none')
+  input.style.color = color
+}
 
 
-window.addEventListener('keydown', function(event) {
+function keysOn() {
+  window.addEventListener('keydown', function(event) {
+    if (65 <= event.which && event.which <= 90) {
 
-  // http://keycode.info
-  // http://bennettfeely.com/clippy/
-  if (!start) {
-    if (event.which === 32) {
-      if (ready) {
-        hideHome()
-        start = true
-      }
+      input.textContent += event.key
+
+      rawCreate(event.which)
+
+      rawAdjust()
+      randSize()
+      randPos()
+      pointsCreate()
+      shapeCreate()
     }
-  } else {
-    switch (event.which) {
-      case 65: // A
-      raw = '50% 0%, 0% 100%, 100% 100%'
-      break
-      case 90: // Z
-      raw = '0 0, 100% 0, 100% 100%, 0 100%'
-      break
-      case 69: // E
-      raw = '20% 0%, 80% 0%, 100% 100%, 0% 100%'
-      break
-      case 82: // R
-      raw = '25% 0%, 100% 0%, 75% 100%, 0% 100%'
-      break
-      case 84: // T
-      raw = '50% 0%, 100% 50%, 50% 100%, 0% 50%'
-      break
-      case 89: // Y
-      raw = '50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%'
-      break
-      case 85: // U
-      raw = '50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%'
-      break
-      case 73: // I
-      raw = '50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%'
-      break
-      case 79: // O
-      raw = '30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%'
-      break
-      case 80: // P
-      raw = '50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%'
-      break
+  })
+}
 
-      case 81: // Q
-      raw = '0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%'
-      break
-      case 83: // S
-      raw = '20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%'
-      break
-      case 68: // D
-      raw = '0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%'
-      break
-      case 70: // F
-      raw = '20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%'
-      break
-      case 71: // G
-      raw = '56% 16%, 19% 28%, 11% 78%, 56% 100%, 75% 32%'
-      break
-      case 72: // H
-      raw = '0 20%, 100% 20%, 100% 64%, 0 64%'
-      break
-      case 74: // J
-      raw = '25% 20%, 75% 20%, 90% 35%, 50% 75%, 10% 35%'
-      break
-      case 75: // K
-      raw = '29% 19%, 93% 19%, 18% 75%'
-      break
-      case 76: // L
-      raw = '28% 21%, 70% 21%, 28% 83%, 10% 41%'
-      break
-      case 77: // M
-      raw = '0 0, 100% 0, 100% 100%, 0 100%'
-      break
+function rawCreate(which) {
+  switch (which) {
+    case 65: // A
+    raw = '50% 0%, 0% 100%, 100% 100%'
+    break
+    case 90: // Z
+    raw = '0 0, 100% 0, 100% 100%, 0 100%'
+    break
+    case 69: // E
+    raw = '20% 0%, 80% 0%, 100% 100%, 0% 100%'
+    break
+    case 82: // R
+    raw = '25% 0%, 100% 0%, 75% 100%, 0% 100%'
+    break
+    case 84: // T
+    raw = '50% 0%, 100% 50%, 50% 100%, 0% 50%'
+    break
+    case 89: // Y
+    raw = '50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%'
+    break
+    case 85: // U
+    raw = '50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%'
+    break
+    case 73: // I
+    raw = '50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%'
+    break
+    case 79: // O
+    raw = '30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%'
+    break
+    case 80: // P
+    raw = '50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%'
+    break
 
-      case 87: // W
-      raw = '2% 2%, 2% 98%, 99% 72%, 71% 47%, 98% 29%, 54% 3%'
-      break
-      case 88: // X
-      raw = '7% 7%, 83% 9%, 45% 22%'
-      break
-      case 67: // C
-      raw = '83% 23%, 45% 79%, 7% 63%, 3% 31%, 37% 0%'
-      break
-      case 86: // V
-      raw = '49% 2%, 42% 42%, 4% 51%, 43% 59%, 49% 97%, 55% 59%, 97% 50%, 56% 43%'
-      break
-      case 66: // B
-      raw = '9% 5%, 50% 37%, 93% 5%, 50% 18%'
-      break
-      case 78: // N
-      raw = '33% 10%, 7% 21%, 86% 94%'
-      break
+    case 81: // Q
+    raw = '0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%'
+    break
+    case 83: // S
+    raw = '20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%'
+    break
+    case 68: // D
+    raw = '0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%'
+    break
+    case 70: // F
+    raw = '20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%'
+    break
+    case 71: // G
+    raw = '56% 16%, 19% 28%, 11% 78%, 56% 100%, 75% 32%'
+    break
+    case 72: // H
+    raw = '0 20%, 100% 20%, 100% 64%, 0 64%'
+    break
+    case 74: // J
+    raw = '25% 20%, 75% 20%, 90% 35%, 50% 75%, 10% 35%'
+    break
+    case 75: // K
+    raw = '29% 19%, 93% 19%, 18% 75%'
+    break
+    case 76: // L
+    raw = '28% 21%, 70% 21%, 28% 83%, 10% 41%'
+    break
+    case 77: // M
+    raw = '0 0, 100% 0, 100% 100%, 0 100%'
+    break
 
-      default: raw = ''
-    }
+    case 87: // W
+    raw = '2% 2%, 2% 98%, 99% 72%, 71% 47%, 98% 29%, 54% 3%'
+    break
+    case 88: // X
+    raw = '7% 7%, 83% 9%, 45% 22%'
+    break
+    case 67: // C
+    raw = '83% 23%, 45% 79%, 7% 63%, 3% 31%, 37% 0%'
+    break
+    case 86: // V
+    raw = '49% 2%, 42% 42%, 4% 51%, 43% 59%, 49% 97%, 55% 59%, 97% 50%, 56% 43%'
+    break
+    case 66: // B
+    raw = '9% 5%, 50% 37%, 93% 5%, 50% 18%'
+    break
+    case 78: // N
+    raw = '33% 10%, 7% 21%, 86% 94%'
+    break
+
+    default: raw = ''
   }
-  if (raw) {
-    rawAdjust()
-    randSize()
-    randPos()
-    pointsCreate()
-    shapeCreate()
-  }
-})
+}
 
 function randSize() {
   width = height = Math.floor(Math.random() * 1000) + 5
@@ -215,7 +215,7 @@ function pointsCreate() {
   }
 }
 function shapeCreate() {
-  document.body.innerHTML += '<svg class="anim" width="' + width + '" height="'+ height +'" viewBox="0 0 ' + width + ' ' + height + '" style="left:calc(' + x + 'vw - ' + width/2 + 'px); top:calc(' + y + 'vh - ' + height/2 + 'px)"> <polygon class="blend" points="' + points + '" stroke="none" fill="'+ color +'"/> </svg>'
+  playground.innerHTML += '<svg class="anim" width="' + width + '" height="'+ height +'" viewBox="0 0 ' + width + ' ' + height + '" style="left:calc(' + x + 'vw - ' + width/2 + 'px); top:calc(' + y + 'vh - ' + height/2 + 'px)"> <polygon class="blend" points="' + points + '" stroke="none" fill="'+ color +'"/> </svg>'
   // colorChange()
 }
 function colorChange() {
