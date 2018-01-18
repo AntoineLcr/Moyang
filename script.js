@@ -40,7 +40,7 @@ function gameOn(i) {
 
   TweenMax.to(instruction, .25, {opacity:0, transform:'translateY(5px)'})
   TweenMax.to(instruction, .5, {opacity:1, transform:'translateY(0px)',textContent:'TYPE IT OUT', delay:.5})
-  TweenMax.to(instruction, .25, {opacity:0, transform:'translateY(5px)', delay:1.5})
+  TweenMax.to(instruction, .25, {opacity:0, transform:'translateY(5px)', delay:2})
 }
 function cursorOn() {
   document.body.style.cursor = 'pointer'
@@ -99,6 +99,8 @@ function keysOn() {
           playground.removeChild(playground.lastChild)
         }, 100)
       }
+    } else if (event.which === 18) {
+      input.classList.toggle('none')
     }
   })
 }
