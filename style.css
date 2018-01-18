@@ -61,6 +61,7 @@
   fill: #DF8BFF;
 }
 .instruction {
+  color: grey;
   grid-column: 2 / 3;
   grid-row: 3 / 4;
   text-align: center;
@@ -72,15 +73,22 @@
   transition: opacity 1s;
 }
 
-.overlay {
+.overlay,
+.noise {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background: url('dot-bg.png') center center;
   mix-blend-mode: multiply;
+}
+.overlay {
+  background: url('dot-bg.png') center center;
+}
+.noise {
+  background-image: url('noise1.png');
+  opacity: .5;
 }
 .anim {
   position: absolute;

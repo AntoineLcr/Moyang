@@ -12,6 +12,8 @@ var input = document.querySelector('.input')
 input.value = ''
 var playground = document.querySelector('.playground')
 
+noiseFx()
+
 letterClick()
 function letterClick() {
   for (let i = 0; i < letters.length; i++) {
@@ -70,6 +72,13 @@ function keysOn() {
       randPos()
       pointsCreate()
       shapeCreate()
+    }
+    if (event.which === 8) {
+      input.textContent = input.textContent.slice(0, -1)
+      
+      if (playground.lastChild) {
+        playground.removeChild(playground.lastChild)
+      }
     }
   })
 }
@@ -224,4 +233,18 @@ function colorChange() {
   } else {
     c = 0
   }
+}
+
+function noiseFx() {
+  var noiseArea = document.querySelector('.noise')
+  var i = 1
+  window.setInterval(function() {
+    // console.log(i);
+    noiseArea.style.backgroundImage = 'url(noise'+i+'.png)'
+    if (i < 4) {
+      i ++
+    } else {
+      i = 1
+    }
+  }, 100)
 }
