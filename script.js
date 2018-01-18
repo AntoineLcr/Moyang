@@ -40,7 +40,7 @@ function gameOn(i) {
 
   TweenMax.to(instruction, .25, {opacity:0, transform:'translateY(5px)'})
   TweenMax.to(instruction, .5, {opacity:1, transform:'translateY(0px)',textContent:'TYPE IT OUT', delay:.5})
-  TweenMax.to(instruction, .25, {opacity:0, transform:'translateY(5px)', delay:2})
+  TweenMax.to(instruction, .25, {opacity:0, transform:'translateY(5px)', delay:1.5})
 }
 function cursorOn() {
   document.body.style.cursor = 'pointer'
@@ -87,6 +87,7 @@ function keysOn() {
       pointsCreate()
       shapeCreate()
     } else if (event.which === 8) {
+      event.preventDefault()
       input.textContent = input.textContent.slice(0, -1)
 
       // TweenMax.to(playground.lastChild, 1, {transform:'translateY(100%)'})
