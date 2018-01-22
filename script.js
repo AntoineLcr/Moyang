@@ -24,8 +24,8 @@ function letterClick() {
     letters[i].addEventListener('click', function() {
       gameOn(i)
     })
-    letters[i].addEventListener('mouseover', cursorOn)
-    letters[i].addEventListener('mouseout', cursorOff)
+    letters[i].addEventListener('mouseover', cursorOn.bind(null, letters[i]))
+    letters[i].addEventListener('mouseout', cursorOff.bind(null, letters[i]))
   }
 }
 // keySpace()
@@ -42,11 +42,13 @@ function gameOn(i) {
   TweenMax.to(instruction, .5, {opacity:1, transform:'translateY(0px)',textContent:'TYPE IT OUT', delay:.5})
   TweenMax.to(instruction, .25, {opacity:0, transform:'translateY(5px)', delay:2})
 }
-function cursorOn() {
+function cursorOn(letter) {
   document.body.style.cursor = 'pointer'
+  TweenMax.to(letter, .25, {transform:'translateY(-10px)'})
 }
-function cursorOff() {
+function cursorOff(letter) {
   document.body.style.cursor = ''
+  TweenMax.to(letter, .25, {transform:'translateY(0)'})
 }
 function colorChoose(i) {
   color = colors[i]
