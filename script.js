@@ -77,7 +77,16 @@ function inputOn() {
 
 function keysOn() {
   window.addEventListener('keydown', function(event) {
-    if (65 <= event.which && event.which <= 90) {
+    // console.log(event);
+    // if (65 <= event.which && event.which <= 90) {
+    if (
+        (event.which > 47 && event.which < 58)   || // number keys
+        event.which == 32 ||                        // spacebar
+        (event.which > 64 && event.which < 91)   || // letter keys
+        (event.which > 95 && event.which < 112)  || // numpad keys
+        (event.which > 185 && event.which < 193) || // ;=,-./` (in order)
+        (event.which > 218 && event.which < 223)    // [\]' (in order)
+      ) {
 
       input.textContent += event.key
 
