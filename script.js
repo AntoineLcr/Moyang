@@ -12,7 +12,7 @@ var input = document.querySelector('.input')
 input.value = ''
 var textarea = document.querySelector('.textarea')
 textarea.value = ''
-var speed = 10
+var speed = 50
 var playground = document.querySelector('.playground')
 
 TweenMax.staggerTo(letters, .25, {transform:'scale(1)', opacity:1}, .1)
@@ -145,6 +145,8 @@ function write(event) {
     }
   } else if (event.which === 18) {
     input.classList.toggle('none')
+  } else if (event.which === 17) {
+    speed = speedToggle()
   }
 }
 
@@ -321,4 +323,8 @@ function keySpace() {
       gameOn(Math.floor(Math.random() * letters.length) + 0 )
     }
   })
+}
+
+function speedToggle() {
+  return speed === 50 ? 250 : 50
 }
