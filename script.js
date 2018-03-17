@@ -10,6 +10,9 @@ var letterShapes = document.querySelectorAll('.shape')
 var instruction = document.querySelector('.instruction')
 var input = document.querySelector('.input')
 input.value = ''
+var textarea = document.querySelector('.textarea')
+textarea.value = ''
+var speed = 10
 var playground = document.querySelector('.playground')
 
 TweenMax.staggerTo(letters, .25, {transform:'scale(1)', opacity:1}, .1)
@@ -74,46 +77,75 @@ function inputOn() {
   input.style.color = color
 }
 
+function cmdV() {
+  if (textarea.value[0]) {
+    write({
+      which: textarea.value[0].toUpperCase().charCodeAt(),
+      key: textarea.value[0],
+      whichForce: true
+    })
+    window.setTimeout(cmdV, speed)
+    textarea.value = textarea.value.slice(1)
+  }
+}
+
 
 function keysOn() {
-  window.addEventListener('keydown', function(event) {
-    // console.log(event);
-    // if (65 <= event.which && event.which <= 90) {
-    if (
-        (event.which > 47 && event.which < 58)   || // number keys
-        event.which == 32 ||                        // spacebar
-        (event.which > 64 && event.which < 91)   || // letter keys
-        (event.which > 95 && event.which < 112)  || // numpad keys
-        (event.which > 185 && event.which < 193) || // ;=,-./` (in order)
-        (event.which > 218 && event.which < 223)    // [\]' (in order)
-      ) {
+  window.addEventListener('keydown', write.bind(this.event))
+}
 
-      input.textContent += event.key
-
-      rawCreate(event.which)
-
-      rawAdjust()
-      randSize()
-      randPos()
-      pointsCreate()
-      shapeCreate()
-    } else if (event.which === 8) {
-      event.preventDefault()
-      input.textContent = input.textContent.slice(0, -1)
-
-      // TweenMax.to(playground.lastChild, 1, {transform:'translateY(100%)'})
-
-
-      if (playground.lastChild) {
-        TweenMax.to(playground.lastChild, .1, {transform:'scale(0)', opacity:0})
-        window.setTimeout(function() {
-          playground.removeChild(playground.lastChild)
-        }, 100)
-      }
-    } else if (event.which === 18) {
-      input.classList.toggle('none')
+function write(event) {
+  // console.log(event);
+  if (event.metaKey) {
+    if (event.which === 86) {
+      // console.log('coller');
+      textarea.focus()
+      document.execCommand("Paste");
+      window.setTimeout(function() {
+        cmdV()
+      }, 10)
+    } else if (event.which === 67) {
+      // console.log('copier');
+      textarea.value = input.textContent
+      textarea.select();
+      // document.execCommand("Copy");
     }
-  })
+  } else
+  // if (65 <= event.which && event.which <= 90) {
+  if ( event.whichForce ||
+      (event.which > 47 && event.which < 58)   || // number keys
+      event.which == 32 ||                        // spacebar
+      (event.which > 64 && event.which < 91)   || // letter keys
+      (event.which > 95 && event.which < 112)  || // numpad keys
+      (event.which > 185 && event.which < 193) || // ;=,-./` (in order)
+      (event.which > 218 && event.which < 223)    // [\]' (in order)
+    ) {
+
+    input.textContent += event.key
+
+    rawCreate(event.which)
+
+    rawAdjust()
+    randSize()
+    randPos()
+    pointsCreate()
+    shapeCreate()
+  } else if (event.which === 8) {
+    event.preventDefault()
+    input.textContent = input.textContent.slice(0, -1)
+
+    // TweenMax.to(playground.lastChild, 1, {transform:'translateY(100%)'})
+
+
+    if (playground.lastChild) {
+      TweenMax.to(playground.lastChild, .1, {transform:'scale(0)', opacity:0})
+      window.setTimeout(function() {
+        playground.removeChild(playground.lastChild)
+      }, 100)
+    }
+  } else if (event.which === 18) {
+    input.classList.toggle('none')
+  }
 }
 
 function rawCreate(which) {
