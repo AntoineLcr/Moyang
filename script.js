@@ -196,7 +196,7 @@ function rawCreate(which) {
     raw = '50% 0%, 0% 100%, 4% 100%'
     break
     case 71: // G
-    raw = '50% at 50% 50%'
+    raw = '89% 29%, 13% 51%, 92% 46%'
     break
     case 72: // H
     raw = '0 20%, 100% 20%, 100% 64%, 0 64%'
