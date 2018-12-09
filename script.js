@@ -1,4 +1,4 @@
-r width, height, x, y, raw, nraw, prev, points, value, wd, color, aftstart
+var width, height, x, y, raw, nraw, prev, points, value, wd, color, aftstart
 var colors = ['#FFAAA0', '#FFBE4A', '#FCE900', '#9CF13E', '#85D4FF', '#DF8BFF']
 // var ready = false
 var start = false
