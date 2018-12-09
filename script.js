@@ -1,4 +1,4 @@
-var width, height, x, y, raw, nraw, prev, points, value, wd, color, aftstart
+r width, height, x, y, raw, nraw, prev, points, value, wd, color, aftstart
 var colors = ['#FFAAA0', '#FFBE4A', '#FCE900', '#9CF13E', '#85D4FF', '#DF8BFF']
 // var ready = false
 var start = false
@@ -196,7 +196,7 @@ function rawCreate(which) {
     raw = '50% 0%, 0% 100%, 4% 100%'
     break
     case 71: // G
-    raw = '56% 16%, 19% 28%, 11% 78%, 56% 100%, 75% 32%'
+    raw = '50% at 50% 50%'
     break
     case 72: // H
     raw = '0 20%, 100% 20%, 100% 64%, 0 64%'
